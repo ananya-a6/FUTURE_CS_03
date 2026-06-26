@@ -24,3 +24,19 @@ This behavior is acceptable because JSONPlaceholder is a public demonstration AP
 
 **Recommendation:**
 Ensure that production APIs require authentication for endpoints containing sensitive or user-specific information.
+
+
+---
+
+## Observation 2 – User Information Exposure
+
+**Risk Level:** Medium
+
+**Observation:**
+The `/users` endpoint returns user-related information, including names, email addresses, phone numbers, addresses, websites, and company details.
+
+**Business Impact:**
+Although this API is intentionally public for educational purposes, exposing detailed user information in a production environment could increase the risk of privacy issues, data harvesting, spam campaigns, or social engineering attacks.
+
+**Recommendation:**
+Return only the minimum data required by the client application. Sensitive fields should be protected using proper authentication and authorization mechanisms.
