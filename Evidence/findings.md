@@ -1,4 +1,4 @@
-# API Security Risk Analysis Findings
+--------# API Security Risk Analysis Findings
 
 ## API Information
 
@@ -40,3 +40,19 @@ Although this API is intentionally public for educational purposes, exposing det
 
 **Recommendation:**
 Return only the minimum data required by the client application. Sensitive fields should be protected using proper authentication and authorization mechanisms.
+
+
+---
+
+## Observation 3 – Public Read Access
+
+**Risk Level:** Low
+
+**Observation:**
+The `/todos` endpoint is publicly accessible and returns task-related information without requiring authentication.
+
+**Business Impact:**
+For a demonstration API, this behavior is expected. However, in a production environment, task or user-specific information should only be accessible to authenticated and authorized users.
+
+**Recommendation:**
+Implement authentication and authorization for endpoints containing user-specific or business-sensitive information.
