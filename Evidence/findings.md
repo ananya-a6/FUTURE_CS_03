@@ -1,6 +1,6 @@
 # API Security Risk Analysis Findings
 
-## API Tested
+## Target API
 
 **API:** JSONPlaceholder
 
@@ -8,114 +8,67 @@
 
 ---
 
-## Endpoint 1
+## Tested Endpoints
 
-### GET /posts
-
-**Status:** 200 OK
-
-**Risk:** Low
-
-**Observation**
-
-The endpoint is publicly accessible without authentication.
-
-**Business Impact**
-
-Acceptable for a public demonstration API. Production APIs should restrict access to sensitive resources.
-
-**Recommendation**
-
-Require authentication for sensitive endpoints.
+* GET /posts
+* GET /users
+* GET /todos
+* GET /comments
 
 ---
 
-## Endpoint 2
+## Findings
 
-### GET /users
+### API-01 – Public API Endpoints
 
-**Status:** 200 OK
+**Risk:** Low
+
+Public endpoints were accessible without authentication. This behavior is expected for a demonstration API but should be restricted for production APIs containing sensitive information.
+
+---
+
+### API-02 – User Information Exposure
 
 **Risk:** Medium
 
-**Observation**
-
-The endpoint exposes user information including names, email addresses, phone numbers, addresses and company details.
-
-**Business Impact**
-
-Excessive data exposure in production environments may increase privacy risks and support social engineering attacks.
-
-**Recommendation**
-
-Return only the minimum data required and enforce authentication and authorization.
+The `/users` endpoint returned user information such as names, email addresses, phone numbers, addresses, websites, and company details. In production environments, this level of exposure should be minimized.
 
 ---
 
-## Endpoint 3
-
-### GET /todos
-
-**Status:** 200 OK
+### API-03 – Public Task Data
 
 **Risk:** Low
 
-**Observation**
-
-Public access to task information without authentication.
-
-**Business Impact**
-
-Acceptable for a demo API but production APIs should protect user-specific resources.
-
-**Recommendation**
-
-Use authentication and authorization mechanisms.
+The `/todos` endpoint returned task-related information without authentication. This is acceptable for a demonstration API but would require access controls in production.
 
 ---
 
-## Endpoint 4
-
-### GET /comments
-
-**Status:** 200 OK
+### API-04 – Public Comment Data
 
 **Risk:** Low
 
-**Observation**
-
-The endpoint returns public comment data without authentication.
-
-**Business Impact**
-
-No immediate security concern for a demonstration API. Production systems should validate the sensitivity of exposed information.
-
-**Recommendation**
-
-Restrict access where comments contain user-generated or confidential data.
+The `/comments` endpoint returned publicly accessible comment data. Production systems should evaluate whether such information should require authentication.
 
 ---
 
-## General Security Assessment
+### API-05 – Response Header Review
 
-### Authentication
+**Risk:** Informational
 
-No authentication is required for the tested endpoints because JSONPlaceholder is a public demonstration API.
+HTTP request and response headers were inspected. No sensitive server-side information was identified during the assessment.
 
-### Authorization
+---
 
-No authorization mechanisms were observed. This is acceptable for a demo environment but would require implementation in production.
+### API-06 – Rate Limiting
 
-### Response Headers
+**Risk:** Medium
 
-Standard HTTP response headers were observed. Response inspection did not indicate sensitive server-side information leakage.
+Rate limiting was not clearly documented. Production APIs should implement request throttling to reduce abuse and automated attacks.
 
-### Rate Limiting
+---
 
-Rate limiting is not clearly documented. Production APIs should implement request throttling to reduce abuse.
+## Overall Assessment
 
-### Overall Risk Rating
+**Overall Risk:** Low to Medium
 
-**Low to Medium**
-
-The tested API is intentionally public for development and educational purposes. No critical security vulnerabilities were identified during this read-only assessment.
+The assessment identified expected characteristics of a public demonstration API. No critical security vulnerabilities were observed during the read-only assessment. The recommendations provided should be considered when developing production APIs.
