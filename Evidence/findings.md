@@ -1,58 +1,121 @@
---------# API Security Risk Analysis Findings
+# API Security Risk Analysis Findings
 
-## API Information
+## API Tested
 
-**API Tested:** JSONPlaceholder
+**API:** JSONPlaceholder
 
-**Endpoint:** `/posts`
-
-**Method:** GET
-
-**Response Status:** 200 OK
+**Base URL:** https://jsonplaceholder.typicode.com
 
 ---
 
-## Observation 1 – Public Endpoint
+## Endpoint 1
 
-**Risk Level:** Low
+### GET /posts
 
-**Observation:**
-The `/posts` endpoint is publicly accessible without authentication.
+**Status:** 200 OK
 
-**Business Impact:**
-This behavior is acceptable because JSONPlaceholder is a public demonstration API intended for learning and testing. In a production environment, publicly accessible endpoints should expose only non-sensitive data.
+**Risk:** Low
 
-**Recommendation:**
-Ensure that production APIs require authentication for endpoints containing sensitive or user-specific information.
+**Observation**
 
+The endpoint is publicly accessible without authentication.
 
----
+**Business Impact**
 
-## Observation 2 – User Information Exposure
+Acceptable for a public demonstration API. Production APIs should restrict access to sensitive resources.
 
-**Risk Level:** Medium
+**Recommendation**
 
-**Observation:**
-The `/users` endpoint returns user-related information, including names, email addresses, phone numbers, addresses, websites, and company details.
-
-**Business Impact:**
-Although this API is intentionally public for educational purposes, exposing detailed user information in a production environment could increase the risk of privacy issues, data harvesting, spam campaigns, or social engineering attacks.
-
-**Recommendation:**
-Return only the minimum data required by the client application. Sensitive fields should be protected using proper authentication and authorization mechanisms.
-
+Require authentication for sensitive endpoints.
 
 ---
 
-## Observation 3 – Public Read Access
+## Endpoint 2
 
-**Risk Level:** Low
+### GET /users
 
-**Observation:**
-The `/todos` endpoint is publicly accessible and returns task-related information without requiring authentication.
+**Status:** 200 OK
 
-**Business Impact:**
-For a demonstration API, this behavior is expected. However, in a production environment, task or user-specific information should only be accessible to authenticated and authorized users.
+**Risk:** Medium
 
-**Recommendation:**
-Implement authentication and authorization for endpoints containing user-specific or business-sensitive information.
+**Observation**
+
+The endpoint exposes user information including names, email addresses, phone numbers, addresses and company details.
+
+**Business Impact**
+
+Excessive data exposure in production environments may increase privacy risks and support social engineering attacks.
+
+**Recommendation**
+
+Return only the minimum data required and enforce authentication and authorization.
+
+---
+
+## Endpoint 3
+
+### GET /todos
+
+**Status:** 200 OK
+
+**Risk:** Low
+
+**Observation**
+
+Public access to task information without authentication.
+
+**Business Impact**
+
+Acceptable for a demo API but production APIs should protect user-specific resources.
+
+**Recommendation**
+
+Use authentication and authorization mechanisms.
+
+---
+
+## Endpoint 4
+
+### GET /comments
+
+**Status:** 200 OK
+
+**Risk:** Low
+
+**Observation**
+
+The endpoint returns public comment data without authentication.
+
+**Business Impact**
+
+No immediate security concern for a demonstration API. Production systems should validate the sensitivity of exposed information.
+
+**Recommendation**
+
+Restrict access where comments contain user-generated or confidential data.
+
+---
+
+## General Security Assessment
+
+### Authentication
+
+No authentication is required for the tested endpoints because JSONPlaceholder is a public demonstration API.
+
+### Authorization
+
+No authorization mechanisms were observed. This is acceptable for a demo environment but would require implementation in production.
+
+### Response Headers
+
+Standard HTTP response headers were observed. Response inspection did not indicate sensitive server-side information leakage.
+
+### Rate Limiting
+
+Rate limiting is not clearly documented. Production APIs should implement request throttling to reduce abuse.
+
+### Overall Risk Rating
+
+**Low to Medium**
+
+The tested API is intentionally public for development and educational purposes. No critical security vulnerabilities were identified during this read-only assessment.
