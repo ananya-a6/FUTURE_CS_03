@@ -1,76 +1,85 @@
-# # FUTURE_CS_03
+# FUTURE_CS_03 – API Security Risk Analysis
 
-## API Security Risk Analysis
+## Overview
 
-### Objective
+This project was completed as part of the **Future Interns Cyber Security Internship 2026**.
 
-The objective of this project is to perform a read-only API Security Risk Analysis on a public demonstration API, identify potential security risks, evaluate API behavior, and provide practical security recommendations based on industry best practices.
+The objective was to perform a read-only API Security Risk Analysis on a public REST API, inspect request and response data, identify potential security risks, and recommend best practices for securing production APIs.
 
-### Target API
+---
 
-JSONPlaceholder (Public Demo REST API)
+## Target API
 
-Base URL:
-https://jsonplaceholder.typicode.com
+* **API:** JSONPlaceholder
+* **Base URL:** https://jsonplaceholder.typicode.com
 
-### Assessment Type
+---
 
-Read-Only API Security Assessment
-
-### Tools Used
+## Tools Used
 
 * Postman
-* Browser
+* JSONPlaceholder REST API
 * GitHub
-* Markdown Documentation
+* Markdown
+* Canva
 
-### Scope
+---
 
-The assessment was limited to publicly available API endpoints using safe GET requests. No exploitation, authentication bypass, denial-of-service testing, or unauthorized activities were performed.
+## Scope
 
-### Methodology
+The assessment included only safe and authorized testing activities:
 
-1. Selected a public demonstration API.
-2. Reviewed the available endpoints.
-3. Tested API endpoints using Postman.
-4. Inspected request and response headers.
-5. Reviewed API responses.
-6. Identified potential security risks.
-7. Assessed business impact.
-8. Documented remediation recommendations.
+* GET request testing
+* Response inspection
+* Request header inspection
+* Response header inspection
+* Risk identification
+* Documentation
 
-## Findings Summary
+No exploitation or unauthorized testing was performed.
 
-| ID     | Finding                              | Risk   |
-| ------ | ------------------------------------ | ------ |
-| API-01 | Public API Endpoints                 | Low    |
-| API-02 | User Information Exposure            | Medium |
-| API-03 | Public Task Data Exposure            | Low    |
-| API-04 | Public Comment Data Exposure         | Low    |
-| API-05 | Rate Limiting Not Clearly Documented | Medium |
+---
 
-### Overall Risk Rating
+## Tested Endpoints
 
-**Low to Medium**
+* GET /posts
+* GET /users
+* GET /todos
+* GET /comments
 
-### Key Findings
+---
 
-* Public endpoints were accessible without authentication.
-* User-related information was returned by the `/users` endpoint.
-* Response headers were inspected for security-related information.
-* No authentication or authorization mechanisms were observed, which is expected for a demonstration API.
-* No critical security vulnerabilities were identified during this read-only assessment.
+## Key Findings
 
-### Repository Structure
+* Public API endpoints
+* User information exposure
+* Public task data
+* Public comment data
+* Response header review
+* Rate limiting considerations
 
-* Evidence → Postman screenshots and findings
-* Report → Final API Security Risk Analysis Report
-* README.md → Project overview
+Overall Risk Rating: **Low to Medium**
 
-### Author
+---
 
-Ananya Achalendran
+## Repository Structure
 
-### Internship
+```text
+Evidence/
+    findings.md
+    Postman screenshots
+
+Report/
+    API_Security_Risk_Analysis_Report.pdf
+
+README.md
+```
+
+---
+
+## Author
+
+**Ananya Achalendran**
+
 
 Future Interns Cyber Security Internship 2026
